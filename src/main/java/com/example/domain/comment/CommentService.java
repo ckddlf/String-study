@@ -102,4 +102,9 @@ public class CommentService {
 
         commentRepository.delete(comment);
     }
+
+    @Transactional
+    public void deleteLikesByPost(Post post) {
+        commentRepository.deleteAllByPostId(post.getId());
+    }
 }

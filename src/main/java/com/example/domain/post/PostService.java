@@ -4,6 +4,8 @@ import com.example.domain.member.Member;
 import com.example.domain.member.MemberRepository;
 import com.example.domain.post.dto.PostRequest;
 import com.example.domain.post.dto.PostResponse;
+import com.example.domain.comment.CommentService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,12 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.domain.like.LikeService; 
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
 
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
+    private final LikeService likeService;
+    private final CommentService commentService;
 
     // 게시글 작성
     @Transactional
@@ -92,7 +98,9 @@ public class PostService {
         if (!post.getNickname().equals(member.getNickname())) {
             throw new RuntimeException("작성자만 삭제할 수 있습니다.");
         }
-
+        
+        commentService.deleteLikesByPost(post);
+        likeService.deleteLikesByPost(post);
         postRepository.delete(post);
     }
 
