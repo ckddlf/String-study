@@ -197,6 +197,7 @@ PUT /api/comments/1
   "content": "수정된 댓글 내용"
 }
 ```
+
 **Response**
 ```json
 {
@@ -215,6 +216,7 @@ DELETE /api/comments/1
 
 **Request**
 GET /api/posts/1/comments
+
 **Response**
 ```json
 [
@@ -230,6 +232,7 @@ GET /api/posts/1/comments
 
 **Request**
 POST /api/posts/1/likes
+
 **Response**
 ```json
 {
@@ -241,6 +244,7 @@ POST /api/posts/1/likes
 
 **Request**
 DELETE /api/posts/1/likes
+
 **Response**
 ```json
 {
@@ -252,6 +256,7 @@ DELETE /api/posts/1/likes
 
 **Request**
 GET /api/posts/1/likes/count
+
 **Response**
 ```json
 {
